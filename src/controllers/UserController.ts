@@ -34,9 +34,9 @@ class UserController {
 
         } catch (error) {
             if (error instanceof AppError) {
-                return response.status(error.statusCode).json({ message: error.message });
+                response.status(error.statusCode).json({ message: error.message });
             }
-            return response.status(500).json({ message: 'Internal Server Error' });
+            response.status(500).json({ message: 'Internal Server Error' });
         }
 
     }
@@ -47,14 +47,14 @@ class UserController {
 
         try {
             const getUserUseCase = makeGetUsersUseCase()
-             const users = await getUserUseCase.execute()
+            const users = await getUserUseCase.execute()
             response.status(200).json(users)
 
         } catch (error) {
             if (error instanceof AppError) {
-                return response.status(error.statusCode).json({ message: error.message });
+                response.status(error.statusCode).json({ message: error.message });
             }
-            return response.status(500).json({ message: 'Internal Server Error' });
+            response.status(500).json({ message: 'Internal Server Error' });
         }
 
     }
