@@ -10,4 +10,4 @@ const userController = new UserController();
 
 userRouter.post('/auth/login', userController.login )
 
-userRouter.get('/confidential-data', myMiddleware, userController.dashboard)
+userRouter.get('/users', myMiddleware, userController.users)

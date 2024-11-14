@@ -10,7 +10,7 @@ export class InMemoryUsersRepository implements UsersRepository {
         { "username": "colab", "password": "123", "id": 125, "email": "colab@dominio.com", "perfil": "user" },
     ];
 
-    async findByUser(username: string){
+    async findByUser(username: string) {
         const user = this.users.find((user) => user.username === username);
         return user || null;
     }
@@ -26,5 +26,8 @@ export class InMemoryUsersRepository implements UsersRepository {
 
         this.users.push(user);
         return user;
+    }
+    async findAllUsers() {
+        return this.users
     }
 }
