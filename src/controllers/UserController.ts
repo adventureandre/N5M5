@@ -2,6 +2,7 @@ import { Request, Response } from "express"
 import { AppError } from "../utils/AppError"
 
 import jwt from "jsonwebtoken"
+import { makeAuthenticateUseCase } from "../use-cases/factories/make-authenticate-use-case";
 
 class UserController {
     /**
@@ -12,27 +13,35 @@ class UserController {
      * remove - DELETE para remover um registro existente
      */
 
-    index(request: Request, response: Response) {
+    async login(request: Request, response: Response) {
 
         const { username, password } = request.body;
 
-        const id = request.user_token
-
-        //throw new Error('Error de exemplo')
+       // const id = request.user_token
         //throw new AppError('Error de exemplo')
 
-        if (username != 'user' && password != 'password') {
-            throw new AppError('Invalid credentials', 401)
-   
+        try {
+            const authenticateUseCase = makeAuthenticateUseCase()
+            await authenticateUseCase.execute({
+                username: username,
+                password: password,
+            })
+
+            const token = jwt.sign({ username }, process.env.SECRET_KEY!, { expiresIn: '1h' });
+            response.json({ token });
+
+        } catch (error) {
+            if (error instanceof AppError) {
+                return response.status(error.statusCode).json({ message: error.message });
+            }
+            return response.status(500).json({ message: 'Internal Server Error' });
         }
-        
-        const token = jwt.sign({username}, process.env.SECRET_KEY!,{ expiresIn: '1h'  });
-        response.json({ token });
+
     }
 
 
 
-    create(request: Request, response: Response) {
+    async dashboard(request: Request, response: Response) {
         const { name, price } = request.body
 
         if (!name) {
