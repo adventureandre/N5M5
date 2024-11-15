@@ -10,4 +10,6 @@ const userController = new UserController();
 
 userRouter.post('/auth/login', userController.login )
 
+userRouter.get('/auth/me', myMiddleware, userController.me)
+
 userRouter.get('/users', myMiddleware, userController.users)

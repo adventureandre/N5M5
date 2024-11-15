@@ -1,7 +1,6 @@
-import 'express-async-errors';
 import dotenv from 'dotenv';
 
-import express, { NextFunction, Request, Response, ErrorRequestHandler } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import { routes } from './routes';
 
 import { AppError } from './utils/AppError';
@@ -17,7 +16,6 @@ app.use((error: any, _request: Request, response: Response, _next: NextFunction)
     if (error instanceof AppError) {
         response.status(error.statusCode).json({ error: error.message });
     } else {
-        console.error(error.message);
         response.status(500).json({ error: 'Internal Server Error' });
     }
 });
