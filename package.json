@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-   "build": "tsup src --out-dir build"
+    "build": "tsc && tsup src --out-dir build"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +23,7 @@
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^9.0.2"
   }
 }

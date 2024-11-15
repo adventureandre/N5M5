@@ -7,13 +7,6 @@ import { GetUserUseCase } from "../use-cases/get-users";
 import { makeGetUsersUseCase } from "../use-cases/factories/make-get-users-use-case";
 
 class UserController {
-    /**
-     * index - GET para listar vários registros
-     * show - GET para exibir um registro específico
-     * create - POST para adicionar um novo registro
-     * update - PUT para atualizar um registro existente
-     * remove - DELETE para remover um registro existente
-     */
 
     async login(request: Request, response: Response) {
 
