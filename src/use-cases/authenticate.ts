@@ -26,8 +26,12 @@ export class AuthenticateUseCase {
       throw new AppError('Usuário e senha inválidos', 401)
     }
 
+    if(password.length < 8) {
+      throw new AppError('Senha deve ter no mínimo 8 caracteres', 401)
+    }
+
     if(user.password != password){
-      throw new AppError('Usuário e senha SEnha inválidos', 401)
+      throw new AppError('Usuário e senha inválidos', 401)
     }
 
 
