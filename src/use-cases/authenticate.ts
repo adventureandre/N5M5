@@ -1,6 +1,7 @@
 import { UsersRepository } from '../repositories/users-repository'
 import { User } from '../types/user'
 import { AppError } from '../utils/AppError'
+import { validatePassword } from '../utils/validatePassword'
 
 interface AuthenticateUseCaseRequest {
   username: string
@@ -70,6 +71,7 @@ export class AuthenticateUseCase {
     }
 
     // Verifica se o usuário está bloqueado
+    // Mesmo com a senha correta vai aceita depois do tempo definido
     if (this.shouldBlockLogin(username)) {
       throw new AppError('Máximo de tentativas atingido. Tente novamente mais tarde.', 401)
     }
@@ -80,6 +82,13 @@ export class AuthenticateUseCase {
       throw new AppError('Senha deve ter no mínimo 8 caracteres', 401)
     }
 
+    //validando se tem caracteres que posssa ser uma injeção SQL
+    if (!validatePassword(password)) {
+      this.incrementLoginAttempts(username);
+      throw new AppError('Senha contém caracteres inválidos.', 401);
+    }
+    
+    //verifica  se a senha ta correta
     if (user.password !== password) {
       this.incrementLoginAttempts(username)
       throw new AppError('Usuário e senha inválidos', 401)

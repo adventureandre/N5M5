@@ -19,7 +19,7 @@ export function myMiddleware(
             return next(new AppError('Token inválido', 403));
         }
 
-        request.user_token = token as string ;   
+        request.user_token = token as UserToken ;   
         next(); 
     });
 
