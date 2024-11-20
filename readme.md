@@ -2,7 +2,7 @@
 
 ## RPG0035 - SOFTWARE SEM SEGURANÇA NÃO SERVE!
 
-Implementação de uma API segura utilizando Node.js e Express, com foco na prevenção de vulnerabilidades como injeção de SQL e gerenciamento de sessões.
+Implementação de uma API segura utilizando Node.js e Express feita do zero, com foco na prevenção de vulnerabilidades como injeção de SQL e gerenciamento de sessões.
 
 ## Objetivos da Prática
 
