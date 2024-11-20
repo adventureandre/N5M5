@@ -37,7 +37,7 @@ cd N5M5
     npm install
 ```
 ```bash
-   mv .env.example .env
+   mv .env.exemple .env
 ```
 A aplicação estará disponível em http://localhost:3333.
 
