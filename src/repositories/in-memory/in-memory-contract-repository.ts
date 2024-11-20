@@ -14,6 +14,7 @@ export class InMemoryContractsRepository implements ContractsRepository {
         { id: 8, empresa: "Empresa C", inicio: "2024-04-01", fim: "2025-04-01", status: "inativo" }
     ];
     
+    
     async findContractsByFilter(empresa: string, inicio: string){
         const filteredContracts = this.contracts.filter(contract => {
             return contract.empresa === empresa && contract.inicio === inicio;

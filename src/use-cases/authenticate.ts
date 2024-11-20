@@ -1,7 +1,7 @@
 import { UsersRepository } from '../repositories/users-repository'
 import { User } from '../types/user'
 import { AppError } from '../utils/AppError'
-import { validatePassword } from '../utils/validatePassword'
+import { validateInput } from '../utils/validatePassword'
 
 interface AuthenticateUseCaseRequest {
   username: string
@@ -83,7 +83,7 @@ export class AuthenticateUseCase {
     }
 
     //validando se tem caracteres que posssa ser uma injeção SQL
-    if (!validatePassword(password)) {
+    if (!validateInput(password)) {
       this.incrementLoginAttempts(username);
       throw new AppError('Senha contém caracteres inválidos.', 401);
     }
