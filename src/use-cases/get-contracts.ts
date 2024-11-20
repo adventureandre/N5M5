@@ -1,7 +1,7 @@
 import { ContractsRepository } from "../repositories/contracts.repository";
 import { Contract } from "../types/Contract";
 import { AppError } from "../utils/AppError";
-import { validateInput } from "../utils/validatePassword";
+import { validateInput } from "../utils/validateInput";
 
 
 export class GetContractsUseCase {

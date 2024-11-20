@@ -1,7 +1,7 @@
 import { UsersRepository } from '../repositories/users-repository'
 import { User } from '../types/user'
 import { AppError } from '../utils/AppError'
-import { validateInput } from '../utils/validatePassword'
+import { validateInput } from '../utils/validateInput'
 
 interface AuthenticateUseCaseRequest {
   username: string
